@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsabile diattica</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="js/gestione_insegnamenti.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Gestione Insegnamenti
+
+      </div>
+      <div class="header-profile">
+        <span id="username"> <a href="/profilo">P. Verdi</a></span>
+        
+      </div>
+    </div>
+
+    
+    <div class="header-menu responsabile_amministrativo">
+      <ul id="main-menu">
+        <li><a href="">Gestione Insegnamenti</a></li>
+        <li><a href="/report">Report</a></li>
+      </ul>
+    </div>
+  </header>
+
+ 
+<section class="assegnazione-filtri-container">
+    <div class="assegnazione-filtro">
+        <label for="filtroAnno">Anno Accademico</label>
+        <select id="filtroAnno" class="assegnazione-filtro-anno"></select>
+    </div>
+
+    <div class="assegnazione-filtro">
+        <label for="filtroDocente">Docente</label>
+        <input type="text" id="filtroDocente" class="assegnazione-filtro-docente" placeholder="Nome o codice">
+        <ul id="suggestionsDocente" class="assegnazione-suggestions-docente"></ul>
+    </div>
+
+    <div class="assegnazione-filtro">
+        <label for="filtroInsegnamento">Insegnamento</label>
+        <input type="text" id="filtroInsegnamento" class="assegnazione-filtro-insegnamento" placeholder="Nome o codice">
+        <ul id="suggestionsInsegnamento" class="assegnazione-suggestions-insegnamento"></ul>
+    </div>
+
+    <div class="assegnazione-filtro-bottoni">
+        <button id="applicaFiltriBtn" class="assegnazione-btn-filtri">Applica Filtri</button>
+        <button id="resetFiltriBtn" class="assegnazione-btn-filtri">Reset</button>
+
+    </div>
+</section>
+
+
+<section class="assegnazione-tabella-header">
+    <h2 id="annoRiferimento" class="assegnazione-anno-riferimento">Anno Accademico:</h2>
+    <button id="assegnaDocenteBtn" class="assegnazione-btn-assegna">Assegna Docente</button>
+</section>
+
+<section class="assegnazione-tabella-container">
+    <table id="tabellaInsegnamenti" class="assegnazione-tabella">
+        <thead>
+            <tr>
+                <th>Insegnamento</th>
+                <th>Docenti Assegnati</th>
+                <th>Ore (assegnate / totali)</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Popolato dal JS -->
+        </tbody>
+    </table>
+</section>
+
+<!-- MODALE ASSEGNA DOCENTE -->
+<div class="assegnazione-modal-assegna hidden" id="modalAssegna">
+    <div class="assegnazione-modal-assegna-content">
+        <span class="assegnazione-close-assegna" id="closeAssegna">&times;</span>
+        <h2>Assegna Docente</h2>
+        <label>Codice Insegnamento:</label>
+        <input type="text" id="modalCodiceIns" class="assegnazione-modal-codice-ins">
+        <p id="modalNomeIns" class="assegnazione-modal-nome-ins"></p>
+
+        <label>Codice Docente:</label>
+        <input type="text" id="modalCodiceDoc" class="assegnazione-modal-codice-doc">
+        <p id="modalNomeDoc" class="assegnazione-modal-nome-doc"></p>
+
+        <label>Ore:</label>
+        <input type="number" id="modalOreAssegna" class="assegnazione-modal-ore" min="1">
+
+        <button id="modalAssegnaBtn" class="assegnazione-modal-btn">Assegna</button>
+    </div>
+</div>
+
+<!-- MODALE MODIFICA DOCENTE -->
+<div class="assegnazione-modal-modifica hidden" id="modalModifica">
+    <div class="assegnazione-modal-modifica-content">
+        <span class="assegnazione-close-modifica" id="closeModifica">&times;</span>
+        <h2>Modifica Ore Docente</h2>
+        <label>Codice Docente:</label>
+        <input type="text" id="modalModCodDoc" class="assegnazione-modal-mod-cod-doc">
+        <p id="modalModNomeDoc" class="assegnazione-modal-mod-nome-doc"></p>
+
+        <label>Ore da assegnare:</label>
+        <input type="number" id="modalModOre" class="assegnazione-modal-mod-ore" min="1">
+
+        <button id="modalModBtn" class="assegnazione-modal-mod-btn">Salva Modifiche</button>
+    </div>
+</div>
+
+<!-- MODALE ELIMINA DOCENTI -->
+<div class="assegnazione-modal-elimina hidden" id="modalElimina">
+    <div class="assegnazione-modal-elimina-content">
+        <span class="assegnazione-close-elimina" id="closeElimina">&times;</span>
+        <h2>Elimina Docenti Assegnati</h2>
+        <form id="formEliminaDocenti" class="assegnazione-form-elimina">
+            <!-- Checkbox popolati dal JS -->
+        </form>
+        <button id="btnConfermaElimina" class="assegnazione-modal-elimina-btn">Conferma Eliminazione</button>
+    </div>
+</div>
+
+
+ 
+</body>
+
+
+
+</html>

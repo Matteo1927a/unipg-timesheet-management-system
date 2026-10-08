@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Timesheet</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/timesheet.js"></script>
+  <script src="js/header.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet </div>
+
+
+
+      <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+    <!-- Striscia blu-->
+    <div class="header-menu docente">
+      <ul id="main-menu">
+        <li><a href="timesheet.html">Timesheet</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li>   <!-- solo per capo progetto -->
+  <a href="lista_progetti_capo.html"
+     id="capoProgettiLink"
+     class="hidden">
+     Progetti
+  </a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- Navigazione tra i mesi-->
+
+
+  <div class="period-navigator">
+
+
+    <button id="prev" class="nav-btn">
+      <span class="material-icons">chevron_left</span>
+    </button>
+
+    <span id="current-period">--</span> <!-- Periodo attuale  -->
+
+    <button id="next" class="nav-btn">
+      <span class="material-icons">chevron_right</span>
+    </button>
+
+    <button id="calendar-btn" class="calendar-btn">
+      <span class="material-icons">calendar_today</span>
+    </button>
+
+     <div class="timesheet-status-group">
+
+    <div class="timesheet-legend">
+      <span class="legend-item assigned">
+        <span class="status-dot"></span>
+        Assegnato
+      </span>
+
+         <div class="timesheet-legend">
+      <span class="legend-item submitted">
+        <span class="status-dot"></span>
+        Inviato
+      </span>
+
+      
+      <span class="legend-item approved">
+        <span class="status-dot"></span>
+        Approvato
+      </span>
+
+      <span class="legend-item reported">
+        <span class="status-dot"></span>
+        Rendicontato
+      </span>
+
+
+      <span class="legend-item reopened">
+        <span class="status-dot"></span>
+        Riaperto
+      </span>
+    </div>
+
+ <div class="timesheet-status">
+      <strong>Stato timesheet:</strong> Vuoto
+    </div>
+
+  </div>
+</div>
+
+    <!-- Popup nascosto per selezione diretta -->
+    <div id="calendar-popup" class="calendar-popup hidden">
+      <label for="month-select">Mese:</label>
+      <select id="month-select">
+        <option value="0">Gennaio</option>
+        <option value="1">Febbraio</option>
+        <option value="2">Marzo</option>
+        <option value="3">Aprile</option>
+        <option value="4">Maggio</option>
+        <option value="5">Giugno</option>
+        <option value="6">Luglio</option>
+        <option value="7">Agosto</option>
+        <option value="8">Settembre</option>
+        <option value="9">Ottobre</option>
+        <option value="10">Novembre</option>
+        <option value="11">Dicembre</option>
+      </select>
+
+      <label for="year-select">Anno:</label>
+      <select id="year-select"></select>
+
+      <button id="go-btn">Vai</button>
+    </div>
+  </div>
+
+
+
+
+  <!-- CONTENUTO PRINCIPALE -->
+  <main>
+    <div class="timesheet-container">
+      <!-- Colonna attività -->
+      <div class="table-fixed">
+        <table>
+
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="fixed-body">
+
+         <tr class="activity-row" data-activity="attivita-ordinaria">
+  <td><span class="toggle">▶</span> Attività ordinaria</td>
+</tr>
+<tr class="sub-row-fixed" data-activity="attivita-ordinaria" data-sub="registro">
+  <td style="padding-left:20px;"><span class="toggle">▶</span> Registro</td>
+</tr>
+<tr class="sub-row-fixed" data-activity="attivita-ordinaria" data-sub="diario">
+  <td style="padding-left:20px;"><span class="toggle">▶</span> Diario</td>
+</tr>
+<tr class="sub-row-fixed" data-activity="attivita-ordinaria" data-sub="institutional">
+  <td style="padding-left:20px;"><span class="toggle">▶</span> Altre Attività Istituzionali</td>
+</tr>
+<tr class="activity-row" data-activity="progetti">
+  <td><span class="toggle">▶</span> Progetti</td>
+</tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tabella giorni scrollabile -->
+      <div class="table-scroll">
+        <table>
+          <thead id="days-header"></thead>
+          <tbody id="days-body"></tbody>
+          <tfoot id="days-footer"></tfoot>
+        </table>
+      </div>
+    </div>
+
+    <div class="button-container">
+     <!--<button id="annul-btn">Annulla modifiche</button> --> 
+      <button id="save-btn">Salva</button>
+      <button id="submit-btn">Invia</button>
+    </div>
+
+
+
+  </main>
+
+  <footer class="simple-footer">
+    <!-- Colonna sinistra -->
+    <div class="footer-col left">
+      <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+      <span class="riga2">Dipartimento di Matematica e Informatica</span>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="footer-col center">
+      <span class="riga1">Timesheet</span>
+      <span class="riga2">Versione 1.0</span>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="footer-col right">
+      <span class="riga1">Stai riscontrando problemi?</span>
+      <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+    </div>
+  </footer>
+
+
+</body>
+
+
+</html>

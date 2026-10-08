@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Registro</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/registri_report.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Reportistica</div>
+
+
+
+           <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+
+    <div class="header-menu docente">
+      <ul id="main-menu">
+        <li><a href="timesheet.html">Timesheet</a></li>
+        <li><a href="diario.html">Diario</a></li>
+        <li>   <!-- solo per capo progetto -->
+  <a href="lista_progetti_capo.html"
+     id="capoProgettiLink"
+     class="hidden">
+     Progetti
+  </a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+   <div class="containerRegistri">
+    <h1>Registro Docente</h1>
+    <div id="registro-info">
+  <p><strong>Anno accademico:</strong> <span id="anno-accademico"></span></p>
+<p><strong>Docente:</strong> <span id="nome-docente"></span> <span id="codice-docente"></span></p>
+<p><strong>Insegnamento:</strong> <span id="nome-lezione"></span> <span id="codice-insegnamento"></span></p>
+<p><strong>Semestre:</strong> <span id="semestre"></span></p>
+
+</div>
+
+  
+    <div id="registroContainer">
+      <table id="registroTable">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Ora inizio</th>
+            <th>Ora fine</th>
+            <th>Ore accademiche</th>
+            <th>Tipo attività</th>
+            <th>Titolo</th>
+            <th>Descrizione</th>
+          </tr>
+        </thead>
+        <tbody id="registroBody">
+          <!-- Righe generate dinamicamente -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="actions">
+      <button id="btnExport" role="button">Esporta Registro in Excel</button>
+    </div>
+  </div>
+
+
+
+    <footer class="simple-footer">
+    <!-- Colonna sinistra -->
+    <div class="footer-col left">
+      <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+      <span class="riga2">Dipartimento di Matematica e Informatica</span>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="footer-col center">
+      <span class="riga1">Timesheet</span>
+      <span class="riga2">Versione 1.0</span>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="footer-col right">
+      <span class="riga1">Stai riscontrando problemi?</span>
+      <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+    </div>
+  </footer>
+
+</body>

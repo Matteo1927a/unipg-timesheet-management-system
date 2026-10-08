@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione progetto</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="js/gestione_progetto.js"></script>
+  <script src="js/header.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Gestione Progetto </div>
+
+     
+      
+           <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+
+    <div class="header-menu responsabile_amministrativo">
+      <ul id="main-menu">
+        <li><a href="lista_progetti.html">Progetti </a></li>
+        <li><a href="aggiunta_progetti.html">Aggiungi progetto</a></li>
+        <li><a href="report_progetti.html">Report</a></li>
+      </ul>
+  </header>
+
+
+
+
+
+  <div class="project-container">
+    <h1 class="page-title">Gestione Progetto</h1>
+
+
+    <!-- SEZIONE DATI PROGETTO -->
+
+    <section class="project-section">
+      <div class="section-header">
+        <h2 class="section-title">Dati Progetto</h2>
+        <div class="edit-buttons">
+          <button id="edit-project-btn" class="btn-primary"> Modifica</button>
+          <button id="save-project-btn" class="btn-success hidden"> Salva</button>
+          <button id="cancel-project-btn" class="btn-secondary hidden"> Annulla</button>
+        </div>
+      </div>
+
+      <div class="project-info-grid" id="project-info">
+        <div><strong>Titolo:</strong> <span id="proj-title"></span></div>
+        <div><strong>Acronimo:</strong> <span id="proj-acronym"></span></div>
+        <div><strong>Codice:</strong> <span id="proj-code"></span></div>
+        <div><strong>CUP:</strong> <span id="proj-cup"></span></div>
+        <div><strong>Totale Ore:</strong> <span id="proj-hours"></span></div>
+        <div><strong>Periodo:</strong> <span id="proj-dates"></span></div>
+      </div>
+    </section>
+
+    <!-- SEZIONE RISORSE -->
+
+    <section class="project-section">
+      <div class="section-header">
+        <h2 class="section-title">Risorse Assegnate al Progetto</h2>
+        <button id="add-resource-btn" class="btn-primary">+ Aggiungi Risorsa</button>
+      </div>
+ <div class="project-table-wrapper">
+      <table class="project-table" id="project-resources">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Cod. Fiscale</th>
+            <th>Ruolo</th>
+            <th>Ore Previste</th>
+            <th>Periodo Attività</th>
+            <th>Wp</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      </div>
+    </section>
+
+
+    <!-- SEZIONE WORK PACKAGES -->
+
+    <section class="project-section">
+      <div class="section-header">
+        <h2 class="section-title">Work Packages</h2>
+        <button id="add-wp-btn" class="btn-primary">+ Aggiungi WP</button>
+      </div>
+       <div class="project-table-wrapper">
+      <table class="project-table" id="wp-table">
+        <thead>
+          <tr>
+            <th>Codice</th>
+            <th>Descrizione</th>
+            <th>Ore WP</th>
+            <th>Periodo</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- POPUP: AGGIUNGI / MODIFICA RISORSA DEL PROGETTO -->
+
+  <div id="add-resource-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Aggiungi Risorsa</h3>
+
+      <div class="name-row">
+        <div>
+          <label for="res-name">Nome:</label>
+          <input type="text" id="res-name" class="input-field" placeholder="Mario">
+        </div>
+        <div>
+          <label for="res-surname">Cognome:</label>
+          <input type="text" id="res-surname" class="input-field" placeholder="Rossi">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <label for="res-cf">Codice Fiscale:</label>
+        <input type="text" id="res-cf" class="input-field" placeholder="RSSMRA80A01F205X" maxlength="16">
+      </div>
+
+      <label for="res-role">Ruolo:</label>
+      <select id="res-role" class="input-field"></select>
+
+      <label for="res-hours">Ore previste:</label>
+      <input type="number" id="res-hours" class="input-field" placeholder="100" min="1">
+
+      <div class="date-fields">
+        <label for="res-start">Data Inizio Attività:</label>
+        <input type="date" id="res-start" class="input-field">
+
+        <label for="res-end">Data Fine Attività:</label>
+        <input type="date" id="res-end" class="input-field">
+      </div>
+
+      <!-- opzione: Salva anche in anagrafica -->
+      <div class="checkbox-row">
+        <input type="checkbox" id="save-to-anagrafica">
+        <label for="save-to-anagrafica">Salva anche in anagrafica</label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="save-res-btn" class="btn-primary">Salva</button>
+        <button id="cancel-res-btn" class="btn-secondary">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- POPUP: ASSEGNA WORK PACKAGE ALLA RISORSA -->
+
+  <div id="assign-wp-modal" class="modal hidden popup-anagrafica">
+    <div class="modal-content">
+      <h3>Assegna Work Package alla Risorsa</h3>
+      <p id="assign-wp-resource-name" style="font-weight: 600; margin-bottom: 10px;"></p>
+
+      <div class="table-container">
+        <table class="project-table" id="assign-wp-table">
+          <thead>
+            <tr>
+              <th>Codice WP</th>
+              <th>Descrizione</th>
+              <th>Ore Assegnate</th>
+              <th>Seleziona</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="modal-actions">
+        <button id="save-assign-wp-btn" class="btn-primary">Salva</button>
+        <button id="close-assign-wp-btn" class="btn-secondary">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Unico: Aggiungi / Modifica WP -->
+  <div id="wp-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="wp-modal-title">Aggiungi Work Package</h3>
+
+      <div class="form-row">
+        <label for="wp-code-input">Codice</label>
+        <input type="text" id="wp-code-input" class="input-field" placeholder="Codice WP">
+      </div>
+
+      <div class="form-row">
+        <label for="wp-desc-input">Descrizione</label>
+        <input type="text" id="wp-desc-input" class="input-field" placeholder="Descrizione WP">
+      </div>
+
+      <div class="form-row">
+        <label for="wp-hours-input">Ore previste</label>
+        <input type="number" id="wp-hours-input" class="input-field" placeholder="Ore WP" min="1">
+      </div>
+
+      <div class="date-fields">
+        <div class="form-row">
+          <label for="wp-start-input">Data inizio</label>
+          <input type="date" id="wp-start-input" class="input-field">
+        </div>
+        <div class="form-row">
+          <label for="wp-end-input">Data fine</label>
+          <input type="date" id="wp-end-input" class="input-field">
+        </div>
+      </div>
+
+
+      <div class="modal-actions">
+        <button id="save-wp-btn" class="btn-primary">Salva</button>
+        <button id="cancel-wp-btn" class="btn-secondary">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- POPUP: ANAGRAFICA RISORSE -->
+
+  <div id="anagrafica-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Seleziona una Risorsa</h3>
+
+      <!-- Barra di ricerca -->
+      <input type="text" id="search-resource" class="input-field" placeholder="Cerca per nome, cognome o codice fiscale">
+
+      <!-- Contenitore scrollabile per la tabella -->
+      <div class="table-container">
+        <table class="project-table" id="anagrafica-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Cognome</th>
+              <th>Cod. Fiscale</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!--  Pulsanti in basso sempre visibili -->
+      <div class="modal-actions">
+        <button id="new-resource-btn" class="btn-success">+ Nuova Risorsa</button>
+        <button id="close-anagrafica-btn" class="btn-secondary">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Azioni globali: Salva / Annulla modifiche -->
+  <div class="project-actions">
+    <button id="cancel-all-btn" class="btn-secondary">Annulla modifiche</button>
+    <button id="save-all-btn" class="btn-primary">Salva modifiche</button>
+  </div>
+
+  <footer class="simple-footer">
+  <!-- Colonna sinistra -->
+  <div class="footer-col left">
+    <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+    <span class="riga2">Dipartimento di Matematica e Informatica</span>
+  </div>
+
+  <!-- Colonna centrale -->
+  <div class="footer-col center">
+    <span class="riga1">Timesheet</span>
+    <span class="riga2">Versione 1.0</span>
+  </div>
+
+  <!-- Colonna destra -->
+  <div class="footer-col right">
+    <span class="riga1">Stai riscontrando problemi?</span>
+    <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+  </div>
+</footer>
+
+</body>

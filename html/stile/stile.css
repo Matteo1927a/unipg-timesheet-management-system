@@ -1,0 +1,3719 @@
+/* reset pagina*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Footer */
+.simple-footer {
+  margin-top: auto;
+  background-color: #e0e0e0;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  /* Spazio tra colonne */
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Colonne */
+.footer-col {
+  flex: 1;
+  /* tutte uguali larghezze */
+  text-align: center;
+  /* default centrato */
+}
+
+/* Aggiustamenti allineamento */
+.footer-col.left {
+  text-align: left;
+  padding-right: 20px;
+}
+
+.footer-col.center {
+  text-align: center;
+}
+
+.footer-col.right {
+  text-align: right;
+  padding-left: 20px;
+}
+
+/* Righe interne */
+.footer-col .riga1 {
+  display: block;
+  margin-bottom: 4px;
+  /* spazio tra le due righe */
+}
+
+.footer-col .riga2 {
+  display: block;
+}
+
+
+/* Header dashboard */
+
+.dashboard-header {
+  width: 100%;
+}
+
+/* Altezza fissa per entrambe le strisce: metà dell'header */
+.dashboard-header .header-top,
+.dashboard-header .header-menu {
+  height: 40px;
+  display: flex;
+  align-items: flex-start;
+  /* titolo in alto */
+  padding: 5px 20px;
+}
+
+/* Striscia bianca */
+.dashboard-header .header-top {
+  background-color: #fff;
+  justify-content: center;
+  /* Timesheet centrato */
+  position: relative;
+  padding-top: 8px;
+}
+
+.dashboard-header .header-title {
+  font-size: 20px;
+}
+
+.header-top .material-icons {
+  font-size: 22px;
+}
+
+.header-profile .material-icons {
+  margin-right: auto;
+}
+
+.dashboard-header .header-profile {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+#userRole{
+ font-weight: bold;
+  margin-left: 5px;
+}
+
+#logoutIcon {
+  font-size: 1.2rem;
+  vertical-align: middle;
+  margin-bottom: 1px;
+  cursor: pointer;
+}
+
+
+.dashboard-header .header-profile a {
+  color: black;
+  text-decoration: none;
+
+}
+
+.dashboard-header .header-profile a:hover {
+  text-decoration: underline;
+}
+
+/* Striscia*/
+.dashboard-header .header-menu {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dashboard-header .header-profile .user-icon {
+  display: none;
+  font-size: 22px;
+}
+/* -------- RESPONSIVE HEADER -------- */
+@media (max-width: 1200px) {
+
+  /* Nascondo il testo */
+  #welcomeUser,
+  #userRole,
+  #logoutBtn {
+    display: none;
+  }
+
+  /* Mostro l'icona utente */
+ .dashboard-header .header-profile .user-icon {
+    display: inline-block;
+  }
+
+}
+
+.header-menu.docente {
+  background-color: #0b376a; /* blu */
+}
+
+.header-menu.responsabile_amministrativo {
+ background-color: #b41010; /*rosso*/
+}
+.header-menu.responsabile_didattica {
+ background-color: #105605; 
+}
+.header-menu.amministratore{
+ background-color: #7d0808; 
+}
+
+
+
+.dashboard-header .header-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 20px;
+}
+
+.dashboard-header .header-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.dashboard-header .header-menu ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  /* leggero effetto hover */
+}
+
+
+
+/* stile box per la selezione del mese/anno del timesheet*/
+
+.period-navigator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8f8f8;
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 20px 10px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.nav-btn,
+.calendar-btn {
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 32px;
+  /* larghezza fissa */
+  height: 32px;
+  /* altezza fissa */
+  display: flex;
+  /* centro icone e simboli */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  /* elimino padding variabile */
+
+}
+
+
+.calendar-btn .material-icons {
+  font-size: 18px;
+  /* grandezza icona */
+  line-height: 1;
+  /* evita disallineamenti */
+
+}
+
+.nav-btn:hover,
+.calendar-btn:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.08);
+
+
+}
+
+#current-period {
+  font-weight: bold;
+  font-size: 16px;
+  min-width: 150px;
+  text-align: center;
+}
+
+.calendar-popup {
+  position: absolute;
+  top: 45px;
+  left: 0px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 12px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/*nascondo il pop-up*/
+.calendar-popup.hidden {
+  display: none;
+}
+
+/* Stato a destra */
+.timesheet-status {
+  margin-left: auto;
+  text-align: right;
+}
+
+.timesheet-info-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 13px;
+}
+
+/* gruppo compatto a destra */
+.timesheet-status-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;   
+}
+
+/* legenda subito prima del divisore */
+.timesheet-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* stato globale con divisore */
+.timesheet-status {
+  padding-left: 12px;
+  border-left: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+/* colori */
+.legend-item.assigned .status-dot { background: #9e9e9e; }
+.legend-item.submitted .status-dot { background: #762f2f; }
+.legend-item.reported .status-dot { background: #1976d2; }
+.legend-item.approved .status-dot { background: #2e7d32; }
+.legend-item.reopened .status-dot { background: #ef6c00; }
+
+.status-dot {
+  width: 10px;        /* dimensione visibile */
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle; /* allineamento con il testo */
+  margin-right: 6px;       /* spazio tra pallino e nome progetto */
+  background-color: gray;  /* colore di default */
+}
+
+.status-dot.assegnato { background-color: #9e9e9e; }
+.status-dot.inviato { background-color: #762f2f; }
+.status-dot.rendicontato { background-color: #1976d2; }
+.status-dot.approvato { background-color: #2e7d32; }
+.status-dot.riaperto { background-color: #ef6c00; }
+
+
+
+/* Stile tabella */
+
+/* Contenitore principale */
+.timesheet-container {
+  display: flex;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 20px;
+  background: #fff;
+  height: auto;
+
+}
+
+/* Colonna attività fissa */
+.table-fixed {
+  flex: 0 0 300px;
+  background: #f9f9f9;
+  border-right: 1px solid #ddd;
+  overflow: hidden;
+}
+
+
+.table-fixed table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-fixed th,
+.table-fixed td {
+  padding: 4px 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  height: 35px;
+  box-sizing: border-box;
+}
+
+/* Tabella scrollabile */
+.table-scroll {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-scroll table {
+  border-collapse: collapse;
+  width: max-content;
+}
+
+.table-scroll th,
+.table-scroll td {
+  border: 1px solid #ddd;
+  height: 35px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.table-scroll input {
+  width: 70px;
+  /* larghezza fissa */
+  height: 15px;
+  outline: none;
+  box-shadow: none;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  /* sfondo trasparente */
+}
+
+#days-body td {
+  min-width: 80px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+/* wp */
+.child-row-fixed td {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3px 5px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+}
+
+/* scrollbar se testo tropo lungo*/
+.child-row-fixed td::-webkit-scrollbar {
+  height: 6px;
+  transition: opacity 0.5s;
+  opacity: 0;
+  /* invisibile di default */
+}
+
+.child-row-fixed td:hover::-webkit-scrollbar {
+  opacity: 1;
+  /* visibile al passaggio del mouse */
+}
+
+.child-row-fixed td::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  border-radius: 3px;
+}
+
+.time-input{
+  font-size: 1em;
+}
+
+/* blocco delle celle dei progetti se timesheet inviato*/
+td.locked {
+  background-color: #f6f3f3;
+  cursor: not-allowed;
+  position: relative;
+}
+
+
+.table-scroll td,
+.table-fixed td {
+  max-width: 150px;
+  /* larghezza massima della cella */
+  white-space: nowrap;
+  overflow-x: auto;
+  /* scroll orizzontale se il testo è troppo lungo */
+  overflow-y: hidden;
+  padding: 3px 5px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+}
+
+/* hover celle di giorni*/
+.table-scroll td:hover {
+  background-color: rgba(245, 245, 245, 0.999);
+}
+
+
+/* Riga principale: Registro, Diario, Progetti */
+tr.activity-row-days[data-activity="Attività ordinaria"]>td,
+tr.activity-row-days[data-activity="Progetti"]:not([data-wp])>td {
+  background-color: #e9f1fa;
+  font-weight: bold;
+  cursor: default;
+  
+}
+
+
+
+
+/* Righe principali Registri e Diario — parte giorni */
+.sub-row-days[data-sub="Registri"]> td,
+.sub-row-days[data-sub="Diario"]> td,
+.sub-row-days[data-sub="Altre Attività istituzionali"]> td
+ {
+  background-color: #eef3f9;
+  font-weight: bold;
+  
+}
+
+.sub-row-days > td{
+  background-color: #eef3f9;
+  font-weight: bold;
+
+  
+}
+
+.timesheet-container:has(.summary-header)
+  .table-fixed tr.sub-row-fixed > td {
+  font-weight: bold;
+}
+
+.table-scroll tr.wp-summary-row > td {
+  background-color: #eef3f9;
+  font-weight: bold;
+}
+
+ .table-scroll tr.wp-summary-row td:hover {
+  background-color: #d4e9ff !important;
+  cursor: pointer;
+}
+
+.table-fixed tr.wp-summary-row > td {
+  font-weight: bold;
+}
+
+.table-scroll tr.sub-row-days > td {
+  background-color: #eef3f9;
+  font-weight: bold;
+    cursor: default;
+}
+
+/* Header colonne Totale / Budget / Residuo / Stato */
+.table-scroll th.summary-header {
+  background-color: #fff;
+}
+
+
+/* Hover per tutte le celle dei giorni */
+.sub-row-days td:hover,
+.activity-row-days td:hover {
+  background-color: #dfeefd !important;
+  cursor: pointer;
+}
+
+
+
+
+/* Riga dei progetti principali (che hanno sotto WP) */
+.sub-row-days[data-activity="Progetti"]:not([data-wp])>td {
+  background-color: #eef3f9;
+  font-weight: bold;
+}
+
+/* --- Esclusioni e colori personalizzati --- */
+
+/*Riga principale delle attività (Attività ordnaria e Progetti)*/
+.activity-row-days > td {
+  background-color:#e9f1fa;
+  font-weight: bold;
+}
+
+
+/* Riga principale Attività ordinaria e Progetti */
+.table-scroll tr.activity-row-days>td:hover {
+  background-color: #d4e9ff;
+  /* azzurro più intenso */
+}
+
+
+
+/* Riga dei progetti principali */
+.table-scroll tr.sub-row-days[data-activity="Progetti"]:not([data-wp])>td:hover {
+  background-color: #d4e9ff;
+  /* azzurro leggero */
+}
+
+/* Celle del totale mensile *
+.table-scroll td.monthly-total:hover {
+  background-color: #bcdcff; 
+}*/
+
+/* Celle festive (holiday) */
+.table-scroll td.holiday-cell:hover {
+  background-color: #eae8e8;
+  /* grigio più scuro */
+}
+
+/* Sticky header */
+th.total-header {
+  position: sticky;
+  top: 0;
+  background:  #fff;
+  z-index: 5;
+}
+td.total-cell{
+  background-color: #fff;
+}
+
+
+
+
+/* Sticky celle td delle colonne dei totali */
+td.forecast-cell,
+td.monthly-total,
+td.budget-cell,
+td.residual-cell,
+tr.total-row td:nth-last-child(4),
+tr.total-row td:nth-last-child(3),
+tr.total-row td:nth-last-child(2),
+tr.total-row td:nth-last-child(1) {
+  position: sticky;
+  background-color: #fff;
+  z-index: 3;
+}
+
+/* Bordo per colonne sticky */
+.total-header,
+.forecast-cell,
+.monthly-total,
+.budget-cell,
+.residual-cell {
+  box-shadow:
+    inset 0.5px 0 0 0.11px #ccc;
+  /* bordo completo della cella */
+  background-color: #fff;
+  /* sfondo pieno, utile per evitare trasparenze */
+  position: sticky;
+  z-index: 4;
+  /* sopra le altre celle */
+}
+
+/* Celle sticky anche per le celle finali con -- */
+tr.total-row td:nth-last-child(2),
+tr.total-row td:nth-last-child(1) {
+  box-shadow: inset 0.5px 0 0.11px #ccc;
+  background-color: #fff;
+  position: sticky;
+  z-index: 4;
+}
+
+/* Allineamento orizzontale: distanza dal bordo destro */
+th.total-header:nth-last-child(4),
+td.forecast-cell,
+tr.total-row td:nth-last-child(4) {
+  right: 317px;
+}
+
+th.total-header:nth-last-child(3),
+td.monthly-total,
+tr.total-row td:nth-last-child(3) {
+  right: 192px;
+}
+
+th.total-header:nth-last-child(2),
+td.budget-cell,
+tr.total-row td:nth-last-child(2) {
+  right: 98px;
+}
+
+th.total-header:nth-last-child(1),
+td.residual-cell,
+tr.total-row td:nth-last-child(1) {
+  right: -1px;
+}
+
+/* Applica stile total-row anche alle celle dei totali delle 4 colonne sticky */
+.total-row td.forecast-cell,
+.total-row td.monthly-total,
+.total-row td.budget-cell,
+.total-row td.residual-cell,
+.total-row td:nth-last-child(4),
+.total-row td:nth-last-child(3),
+.total-row td:nth-last-child(2),
+.total-row td:nth-last-child(1) {
+  background-color: #f0f0f0 !important;
+  font-weight: 600;
+  border-top: 2px solid #ddd;
+}
+
+
+
+
+
+
+/* Scrollbar solo su hover */
+.table-scroll td::-webkit-scrollbar,
+.table-fixed td::-webkit-scrollbar {
+  height: 6px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.table-scroll td:hover::-webkit-scrollbar,
+.table-fixed td:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+.table-scroll td::-webkit-scrollbar-thumb,
+.table-fixed td::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+}
+
+
+.table-scroll th .weekday {
+  font-size: 0.7em;
+  color: #555;
+}
+
+.table-scroll th .day-number {
+  font-size: 0.6em;
+  font-weight: bold;
+}
+
+.button-container {
+  margin: 10px 20px;
+  text-align: right;
+}
+
+.button-container button {
+  color: black;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #ece8e86e;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #e0e0e0;
+}
+
+.sub-row.hidden {
+  display: none;
+}
+
+.activity-row {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+.activity-row .toggle {
+  margin-right: 6px;
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+}
+
+.sub-row-fixed {
+   background: #f1f1f1;
+  cursor: pointer;
+}
+
+
+
+
+
+/* riga totale in fondo */
+.total-row {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  border-top: 2px solid #ddd;
+}
+
+.activity-total {
+  font-weight: 600;
+  text-align: center;
+  background-color: #fafafa;
+}
+
+
+.holiday-cell {
+  background-color: #f2f2f2;
+  /* grigio chiaro */
+  color: #666;
+}
+
+#grand-total {
+  /* aggiungi .monthly-total se vuo quella colonna grigia*/
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: center;
+  min-width: 80px;
+}
+
+#grand-total {
+  background-color: #e0e0e0;
+}
+
+
+.total-header {
+  background-color: #f3f3f3;
+  font-weight: bold;
+    padding: 0px 5px;
+}
+
+/*ALERT GIORNALIERI */
+.daily-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  background-color: #fff3cd;
+
+  /* giallo chiaro alert */
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.daily-alert div:first-child {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #856404;
+  /* testo scuro giallo */
+}
+
+/* text area alert*/
+.daily-alert textarea {
+  width: 100%;
+  min-height: 60px;
+  resize: vertical;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* bottoni alert */
+.daily-alert .alert-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.daily-alert .alert-buttons button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.daily-alert .alert-buttons .cancel-note {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.daily-alert .alert-buttons .cancel-note:disabled {
+  background-color: #f1b0b7;
+  cursor: not-allowed;
+  color: #721c24;
+}
+
+.daily-alert .alert-buttons .send-note {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.daily-alert .alert-buttons .send-note:hover {
+  background-color: #bee5eb;
+}
+
+/* animazione */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Nota icona 
+.note-icon {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 4px;
+  vertical-align: middle;
+  color: #f0a500;
+}*/
+
+/*.note-box {
+  position: absolute;
+  background-color: #fffbe6;
+  border: 1px solid #ffd966;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 220px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.note-box b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.note-box i {
+  display: block;
+  color: #555;
+}
+*/
+
+.budget-cell,
+.residual-cell {
+  text-align: center;
+  font-weight: 500;
+}
+
+.residual-cell {
+  color: black;
+}
+
+.residual-cell.zero {
+  color: red;
+  font-weight: bold;
+}
+
+
+
+
+/* Popup overlay */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Finestra popup */
+.popup {
+  background: white;
+  border-radius: 10px;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-header {
+  background: #b41010;
+  color: white;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  margin: -20px -20px 20px -20px;
+}
+
+.popup label {
+  display: block;
+  margin-top: 10px;
+}
+
+.popup input,
+.popup select,
+.popup textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.popup textarea {
+  resize: none;
+  height: 70px;
+}
+
+.popup .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.popup button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.annulla {
+  background: #ccc;
+}
+
+.annulla:hover {
+  background-color: #bcbbbb;
+}
+
+.inserisci {
+  background: #b41010;
+  color: white;
+}
+
+.inserisci:hover {
+  background-color: #7e0c0c;
+}
+
+.button-container-lezione {
+  margin: 10px 35px;
+  text-align: right;
+}
+
+.button-container-lezione button {
+  color: black;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #ece8e86e;
+  cursor: pointer;
+}
+
+.button-container-lezione button:hover {
+  background-color: #e0e0e0;
+}
+
+/* stile pop up pagina principale lezioni timeseet*/
+.lezione-popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.lezione-popup {
+  background: white;
+  border-radius: 10px;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lezione-popup-header {
+  background:#0b376a;;
+  color: white;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  margin: -20px -20px 20px -20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.lezione-popup-data {
+  background: #f4f4f4;
+  padding: 5px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.lezione-popup label {
+  display: block;
+  margin-top: 10px;
+}
+
+.lezione-popup input,
+.lezione-popup select,
+.lezione-popup textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.lezione-popup textarea {
+  resize: none;
+  height: 70px;
+}
+
+.lezione-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.lezione-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.lezione-annulla {
+  background: #ccc;
+}
+
+.lezione-annulla:hover {
+  background-color: #bdbdbd;
+}
+
+.lezione-salva {
+  background: #0b376a;;
+  color: white;
+}
+
+.lezione-salva:hover {
+  background-color: #041d39;;
+}
+
+/* stile pagina timehseet resp_amministrativo*/
+
+
+.total-cell {
+  font-weight: bold;
+  font-size: 1.1em;
+  /* leggermente più grande */
+  padding: 10px 5px;
+  /* aumenta altezza della cella */
+}
+
+.highlight-column {
+  background-color: #f0f0f0;
+}
+
+/* stile pagina lista progetti del responsabile amministrativo*/
+
+.projlist-table-wrapper {
+  width: 100%;
+  overflow-x: auto;   /* scroll orizzontale solo se serve */
+   
+}
+
+
+.projlist-header {
+  margin-bottom: 20px;
+}
+
+.projlist-search input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+
+.projlist-container {
+  width: 100%;           /* si riduce con la finestra */
+  max-width: 1200px;     /* larghezza massima per desktop */
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+
+
+.projlist-table {
+  
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+     table-layout: auto;
+   
+}
+
+
+.projlist-table thead {
+  background-color: #f5f5f5;
+}
+
+.projlist-table th,
+.projlist-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+  
+    overflow: hidden;           /* evita fuoriuscite */
+
+  white-space: nowrap;   
+  
+}
+
+.projlist-table th {
+  font-weight: 600;
+  color: #444;
+}
+
+.projlist-table tr:hover {
+  background-color: #fafafa;
+}
+
+.projlist-name a {
+  color: #b41010;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.projlist-name a:hover {
+  color: #7e0c0c;
+}
+
+.projlist-status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.projlist-status.aperto {
+  background-color: #e0f7e9;
+  color: #12823b;
+}
+
+
+.projlist-status.chiuso {
+  background-color: #fff4e5;
+  color: #b81500;
+}
+.projlist-status.status-rendicontato {
+  background-color: #fff4e5;
+  color: #006eb8;
+}
+
+.project-title-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 10px; /* spazio tra titolo e bottone */
+  width: 100%;
+  margin-top: 20px;
+
+}
+
+.project-title-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+#edit-project-btn .material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.project-name-cell {
+  font-weight: 600;
+  font-size: 18px;
+  color: #1a1a1a;
+  background-color: #f5f5f5;
+  /* colore di sfondo leggero */
+  padding: 10px 15px;
+  border-bottom: 2px solid #ccc;
+}
+
+/* Evidenzia la riga principale del progetto per timesheet resp_amministrativo*/
+.project-summary-row td {
+  background-color: #e9f1fa;
+  font-weight: bold;
+  /* testo più marcato */
+}
+
+.summary-header {
+  padding: 0.4rem 0.5rem;
+
+}
+
+.project-summary-row td:hover {
+  background-color: #d4e9ff;
+}
+
+/* Al passaggio del mouse sulla cella festiva */
+.project-summary-row td.holiday-cell:hover {
+  background-color: #d4e9ff;
+  /* un azzurro più acceso */
+}
+
+/*Popup Timesheet*/
+.ts-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2500;
+}
+
+/* Nascosto di default */
+.ts-hidden {
+  display: none;
+}
+
+/* Contenuto popup */
+.ts-popup-content {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 420px;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  animation: tsFadeIn 0.25s ease-in-out;
+}
+
+/* Titolo popup */
+#ts-popup-title {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: #b71c1c;
+  text-align: center;
+}
+
+/* Lista utenti */
+#ts-popup-user-list {
+  margin-bottom: 22px;
+}
+
+.ts-popup-user {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.ts-popup-user input {
+  margin-right: 10px;
+}
+
+/* solo per riapertura*/
+.ts-popup-note {
+  margin: 10px 0;
+}
+
+
+.ts-popup-note textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 6px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Bottoni popup */
+.ts-popup-buttons {
+  text-align: right;
+}
+
+.ts-popup-buttons .ts-action-btn {
+  padding: 8px 14px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#ts-popup-confirm {
+  background-color: #b41010;
+  color: #fff;
+}
+
+#ts-popup-confirm:hover {
+  background-color: #7e0c0c;
+}
+
+#ts-popup-cancel {
+  background-color: #ccc;
+  color: black;
+}
+
+#ts-popup-cancel:hover {
+  background-color: #adabab;
+}
+
+/* Animazione apparizione popup */
+@keyframes tsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.status-cell {
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-open {
+  color: #a0a0a0;
+  /* grigio */
+}
+
+.status-closed {
+  color: #b41010;
+  /* verde */
+}
+
+.status-inviato {
+  color: #555;
+}
+
+.status-riaperto {
+  color: #d93025;
+}
+
+.status-approvato {
+  color: #1a8f2c;
+}
+
+.status-rendicontato {
+  color: #1565c0;
+}
+
+/* Popup selezione utenti */
+.ts-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ts-popup {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 30px;
+  width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.ts-popup-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.ts-popup-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.ts-popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.ts-hidden {
+  display: none !important;
+}
+
+.member-row-fixed td {
+  vertical-align: middle;
+  padding-left: 40px;
+  font-style: italic;
+}
+
+.registro-tooltip {
+  position: absolute;
+  display: none;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 9999;
+  max-width: 240px;
+  line-height: 1.4;
+}
+
+
+
+.sub-row-fixed[data-activity="Registri"] {
+  cursor: pointer;
+}
+
+.sub-row-fixed[data-activity="Registri"]:hover {
+  text-decoration: underline;
+  color: #007bff;
+}
+
+/*PAGINA RESPONSABILE AMMINISTRATIVO AGGIUNGI PROGETTO  */
+.resp_amm-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resp_amm-page-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.resp_amm-section-title {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.resp_amm-required-note {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.resp_amm-form-grid,
+.resp_amm-wp-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.8rem 1.2rem;
+}
+
+.resp_amm-wp-block {
+  background: #f8f9fc;
+  border: 1px solid #d3d9e4;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.resp_amm-form-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.resp_amm-btn-primary {
+  background: #2b6cb0;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.resp_amm-btn-primary:hover {
+  background-color: #065ab4;
+}
+
+
+
+.resp_amm-btn-secondary {
+  background: #4a5568;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.resp_amm-btn-secondary:hover {
+  background-color: #272d37;
+}
+
+.resp_amm-btn-remove-wp {
+  margin-top: 1rem;
+  background: #b41010;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.resp_amm-btn-remove-wp:hover {
+  background-color: #7e0c0c;
+}
+
+.resp_amm-btn-modifica {
+  background-color: #cbc9c9;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.resp_amm-btn-modifica:hover {
+  background-color: #e0e0e0;
+}
+
+
+/*Gestione Progetto*/
+
+
+
+.project-container {
+  padding: 2rem;
+  background: #f9fafb;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.project-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+   white-space: nowrap;  /* evita che le celle vadano a capo */
+}
+
+.project-table th,
+.project-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.project-table th {
+  background: #f1f3f5;
+  font-weight: 600;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-success {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(173, 172, 172);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 320px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.4rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn-success {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #0056b3;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.project-info-grid input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.modal .date-row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.modal .date-row div {
+  flex: 1;
+}
+
+#anagrafica-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+#anagrafica-table button.btn-sm {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+#search-resource {
+  margin-bottom: 0.8rem;
+}
+
+/*
+    MODAL: Anagrafica Risorse */
+
+#anagrafica-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+#anagrafica-table button.btn-sm {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+#search-resource {
+  margin-bottom: 0.8rem;
+}
+
+/* Pulsante “Nuova Risorsa” dentro anagrafica */
+#add-new-resource-btn {
+  background-color: #17a2b8;
+  color: white;
+  font-weight: 500;
+}
+
+#add-new-resource-btn:hover {
+  background-color: #117a8b;
+}
+
+/* 
+    MODAL: Aggiungi Risorsa
+ */
+
+#add-resource-modal .modal-content {
+  width: 380px;
+}
+
+#add-resource-modal .name-row {
+  display: flex;
+  gap: 10px;
+}
+
+#add-resource-modal .name-row div {
+  flex: 1;
+}
+
+#add-resource-modal .date-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#add-resource-modal label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 0.3rem;
+}
+
+
+
+.modal-content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+
+#anagrafica-modal .modal-content {
+  width: 90%;
+  max-width: 1200px;
+  max-height: 80vh;
+  /* Limita l’altezza totale del popup */
+  overflow: hidden;
+  display: flex;
+  scrollbar-gutter: stable;
+  /* riserva spazio per la scrollbar */
+  flex-direction: column;
+  /* Mantiene struttura interna verticale */
+}
+
+/* Contenitore scrollabile per la tabella */
+#anagrafica-modal .table-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+
+/* Mantiene visibili i pulsanti in basso */
+#anagrafica-modal .modal-actions {
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+#anagrafica-modal .table-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+
+#anagrafica-table {
+  border-collapse: collapse;
+  /* Evita i bordi doppi */
+  margin: 0;
+  /* Elimina margini interni */
+  width: 100%;
+}
+
+/*  Rende l’header della tabella aderente al contenitore */
+#anagrafica-table thead th {
+  border-top: none;
+  background-color: #f1f3f5;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+
+#anagrafica-table thead {
+  background-color: #f1f3f5;
+}
+
+/*  Popup tabelle scrollabili: Anagrafica e Mappatura WP */
+.popup-anagrafica .modal-content {
+  width: 480px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.popup-anagrafica .input-field {
+  width: 300px;
+  max-width: 100%;
+  margin-bottom: 0.8rem;
+  align-self: flex-start;
+  /* allinea a sinistra */
+}
+
+.popup-anagrafica .table-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.popup-anagrafica .project-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.popup-anagrafica .project-table th,
+.popup-anagrafica .project-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.popup-anagrafica .project-table thead th {
+  background-color: #f1f3f5;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.popup-anagrafica .modal-actions {
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+#search-wp-resource {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#assign-wp-modal .modal-content {
+  width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#assign-wp-modal .table-container {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+#assign-wp-modal .wp-ore {
+  width: 80px;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+.project-actions .btn-primary,
+.project-actions .btn-secondary {
+  min-width: 140px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.project-actions .btn-secondary {
+  color: #333;
+}
+
+.project-actions .btn-secondary:hover {
+  background-color: rgb(173, 172, 172);
+}
+
+/* ===========================
+   SEZIONE DIARIO ATTIVITÀ
+   =========================== */
+
+.sezione-diario {
+  background-color: #f9f9f9;
+  padding: 40px 5%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigatore anno accademico diario*/
+
+.sezione-diario .academic-year-navigator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* allinea tutto a sinistra */
+  gap: 15px;
+  background-color: #f8f8f8;
+  ;
+  padding: 10px 24px;
+  border-radius: 8px;
+  width: 95%;
+  /* quasi tutta la pagina */
+  margin: 20px auto;
+  /* centrato orizzontalmente */
+  margin-top: 2px;
+  ;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.sezione-diario .academic-year-navigator .nav-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 30px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.sezione-diario .academic-year-navigator .nav-btn:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.08);
+}
+
+.sezione-diario #current-academic-year {
+  font-size: 1.6em;
+  min-width: 120px;
+  text-align: left;
+}
+
+/* Contenitore principale */
+.sezione-diario main {
+   display: flex;
+   justify-content: center;
+   flex: 1;
+}
+
+/* Diario container */
+.sezione-diario .diario-container {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Header blu */
+.sezione-diario .diario-header {
+  background-color: #0b376a; /* blu */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  ;
+}
+
+/* Tabella */
+.sezione-diario .diario-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+}
+.sezione-diario .diario-container {
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+}
+
+.sezione-diario .diario-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 2;
+}
+
+.sezione-diario .diario-table th,
+.sezione-diario .diario-table td {
+  text-align: left;
+  padding: 10px 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sezione-diario .diario-table th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: 600;
+}
+
+.sezione-diario .diario-table th.col-ore,
+.sezione-diario .diario-table td.col-ore {
+  text-align: center;
+
+}
+
+.sezione-diario .diario-table td {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Scroll orizzontale tabella */
+.sezione-diario .table-scroll-x {
+  overflow-x: auto;
+}
+
+.sezione-diario .diario-table {
+  min-width: 800px; /* forza larghezza minima */
+}
+
+.sezione-diario .col-attivita {
+  width: 75%;
+}
+
+.sezione-diario .col-ore {
+  width: 25%;
+  text-align: right;
+}
+
+.diario-table th,
+.diario-table td {
+  white-space: nowrap;
+}
+
+
+
+/* Alternanza righe e hover */
+.sezione-diario .diario-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.sezione-diario .diario-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Input ore per anno accademico */
+.annual-hours-input {
+  width: 70px;
+  height: 28px;
+
+  padding: 2px 4px;
+  font-size: 13px;
+  text-align: center;
+
+  border: 1.5px solid #8a8989;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+
+.annual-hours-input:focus {
+  outline: none;
+  border-color: #0056b3;
+  background-color: #eef5ff;
+}
+
+
+.total-summary-row {
+  background-color: #f8f9fc;
+  border-top: 2px solid #d3d9e4;
+}
+
+.total-summary-row.alert {
+  background-color: #ffe6e6;
+  color: #b30000;
+}
+
+
+/* ---- Stile specifico pagina export ---- */
+
+/*#registro-info {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+#registro-info p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}*/
+
+.export-page .container {
+  max-width: 1400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px 40px;
+  /* <— aggiunto più spazio a destra e sinistra */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.export-page table {
+
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /* colonne a larghezza fissa e proporzionata */
+
+}
+
+
+.export-page th,
+.export-page td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+  /* forza l'andata a capo */
+  white-space: pre-wrap;
+  /* mostra gli a capo */
+}
+
+.export-page th {
+  background-color: #f5f5f5;
+}
+
+.export-page input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 4px;
+}
+
+.export-page .actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.export-page button {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.export-page button:hover {
+  background-color: #005fa3;
+}
+
+/* Stile base per celle e input */
+
+/*#registroContainer,
+.registro-info {
+  padding: 20px 40px;
+  overflow-x: auto;
+  /* in caso di overflow su schermi piccoli 
+}*/
+#registroBody td {
+  padding: 4px;
+  vertical-align: top;
+}
+
+#registroBody tr {
+  background-color: #f9f9f9;
+}
+
+#registroBody tr:hover {
+  background-color: #ededed;
+}
+
+
+#registroBody textarea {
+  width: 100%;
+  /* tutta la larghezza della cella */
+  height: 100%;
+  /* tutta l’altezza della cella */
+  min-height: 40px;
+  /* altezza minima visibile se vuota */
+  box-sizing: border-box;
+  padding: 6px 8px;
+  resize: none;
+  /* impedisce resize manuale */
+  overflow: hidden;
+  /* per auto-resize */
+  border: transparent;
+
+}
+
+/*Celle specifiche più larghe */
+
+.export-page th:nth-child(1) {
+  width: 10%;
+}
+
+/* Data */
+.export-page th:nth-child(2),
+.export-page th:nth-child(3) {
+  width: 8%;
+}
+
+/* Ore */
+.export-page th:nth-child(4) {
+  width: 10%;
+}
+
+/* Ore accademiche */
+.export-page th:nth-child(5) {
+  width: 17%;
+}
+
+/* Tipo attività */
+.export-page th:nth-child(6) {
+  width: 20%;
+}
+
+/* Titolo */
+.export-page th:nth-child(7) {
+  width: 32%;
+}
+
+/* Descrizione */
+
+.export-page td,
+.export-page th {
+  padding: 10px;
+  font-size: 0.95rem;
+}
+
+.export-page th {
+  background-color: #eef2f6;
+  font-weight: 600;
+}
+
+#registroBody textarea:focus,
+#registroBody input:focus {
+  outline: none;
+  /* rimuove il bordo blu */
+  box-shadow: none;
+  /* rimuove eventuale ombra del focus */
+}
+
+/*
+.resp_amm-template-preview {
+  margin-top: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}*/
+
+/* stile pagina gestione insegnamenti*/
+
+.assegnazione-filtri-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+  background-color: #f0f0f0;
+}
+
+.assegnazione-filtro {
+  flex: 1;
+  min-width: 150px;
+
+}
+
+.assegnazione-filtro input,
+.assegnazione-filtro select {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.assegnazione-filtro-bottoni {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.assegnazione-btn-filtri {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.assegnazione-suggestions-docente,
+.assegnazione-suggestions-insegnamento {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 120px;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  z-index: 10;
+}
+
+.assegnazione-suggestions-docente li,
+.assegnazione-suggestions-insegnamento li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.assegnazione-suggestions-docente li:hover,
+.assegnazione-suggestions-insegnamento li:hover {
+  background-color: #eee;
+}
+
+.assegnazione-tabella-container {
+  padding: 20px;
+}
+
+.assegnazione-tabella {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assegnazione-tabella th,
+.assegnazione-tabella td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.assegnazione-tabella th {
+  background-color: #f9f9f9;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ===== MODALI ASSEGNAZIONE ===== */
+.assegnazione-modal-assegna,
+.assegnazione-modal-modifica,
+.assegnazione-modal-elimina {
+  display: none;
+  /* nascosto di default */
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CONTENUTO MODALE SPECIFICO */
+.assegnazione-modal-assegna-content,
+.assegnazione-modal-modifica-content,
+.assegnazione-modal-elimina-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  position: relative;
+}
+
+/* BORDO COLORATO IN ALTO PER OGNI MODALE */
+.assegnazione-modal-assegna-content {
+  border-top: 5px solid #0073e6;
+}
+
+.assegnazione-modal-modifica-content {
+  border-top: 5px solid #ffa500;
+}
+
+.assegnazione-modal-elimina-content {
+  border-top: 5px solid #e60000;
+}
+
+/* TITOLO MODALE */
+.assegnazione-modal-assegna-content h2,
+.assegnazione-modal-modifica-content h2,
+.assegnazione-modal-elimina-content h2 {
+  margin-top: 0;
+}
+
+/* LABEL E INPUT */
+.assegnazione-modal-assegna-content label,
+.assegnazione-modal-modifica-content label,
+.assegnazione-modal-elimina-content label {
+  margin-top: 10px;
+  display: block;
+}
+
+.assegnazione-modal-assegna-content input[type="text"],
+.assegnazione-modal-assegna-content input[type="number"],
+.assegnazione-modal-modifica-content input[type="text"],
+.assegnazione-modal-modifica-content input[type="number"] {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+/* BOTTONI MODALI */
+.assegnazione-modal-assegna-content button,
+.assegnazione-modal-modifica-content button,
+.assegnazione-modal-elimina-content button {
+  margin-top: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* CLOSE BUTTON */
+.assegnazione-close-assegna,
+.assegnazione-close-modifica,
+.assegnazione-close-elimina {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* HEADER TABELLA + BOTTONE ASSEGNA */
+.assegnazione-tabella-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 10px 20px;
+  margin-top: 20px;
+}
+
+.assegnazione-btn-assegna {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* FORM ELIMINA DOCENTI */
+.assegnazione-form-elimina div {
+  display: flex;
+  justify-content: space-between;
+  /* testo a sinistra, checkbox a destra */
+  align-items: center;
+  padding: 5px 0;
+}
+
+.assegnazione-form-elimina label {
+  margin: 0;
+}
+
+/* stile pagin dell'login*/
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+/* Titolo di benvenuto */
+.login-welcome-title {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Contenitore del form */
+.login-form-container {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.login-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Input */
+.login-input {
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* Bottone */
+.login-button {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* =========================
+   REPORT PAGE
+========================= */
+
+.report-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2933;
+}
+
+/* Titolo pagina */
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   FILTRI
+========================= */
+
+.report-filters {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.report-filters h2 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+/* Form layout */
+#reportFiltersForm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 16px 24px;
+  align-items: end;
+}
+
+/* Gruppo campo */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  color: #4b5563;
+}
+
+/* Select */
+.form-group select {
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.form-group select:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+}
+
+/* =========================
+   AZIONI
+========================= */
+
+.form-actions {
+  display: flex;
+  align-items: flex-end;
+}
+
+.form-actions button {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #2563eb;
+  color: #ffffff;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.form-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-actions button:not(:disabled):hover {
+  background-color: #1e40af;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .form-actions {
+    justify-content: flex-start;
+  }
+}
+
+
+/* =========================
+   REGISTRO DOCENTE
+========================= */
+
+.containerRegistri {
+    width: 100%;
+  max-width: 100%;        
+  margin: 0 auto;
+  padding: 24px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2933;
+   overflow-x: hidden;     /* previene sforamenti orizzontali */
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   INFO REGISTRO
+========================= */
+
+#registro-info {
+  background: #f9fafb;
+  padding: 16px 20px;       /* padding interno */
+  border-radius: 8px;
+  margin-bottom: 32px;
+
+  width: 100%;              /* riempie il container */
+  max-width: 100%;          /* mai più largo del viewport */
+  box-sizing: border-box;   /* include padding nella larghezza */
+
+  overflow-wrap: break-word; /* parole lunghe a capo */
+  word-break: break-word;    /* compatibilità maggiore */
+}
+
+#registro-info p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+#registro-info strong {
+  color: #111827;
+}
+
+
+/* =========================
+   TABELLA REGISTRO – FULL WIDTH / Molte righe
+========================= */
+
+
+#registroContainer {
+  width: 100%;
+  max-width: 100vw;        /* non può superare il viewport */
+  box-sizing: border-box;
+  overflow-x: auto;        /* scroll orizzontale se serve */
+}
+
+#registroTable {
+  width: 100%;
+  min-width: 600px;         /* larghezza minima per tabelle grandi */
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-sizing: border-box;
+  font-size: 1rem;
+  
+}
+
+#registroTable th,
+#registroTable td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2933;
+}
+
+#registroTable th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  position: sticky;   /* intestazioni sempre visibili */
+  top: 0;
+  z-index: 2;
+}
+
+#registroTable tbody tr:nth-child(even) {
+  background-color: #f9fafb; /* righe alternate */
+}
+
+#registroTable tbody tr:hover {
+  background-color: #e5e7eb; /* hover chiaro */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  #registroTable {
+    min-width: 700px;
+    font-size: 0.95rem;
+  }
+
+  #registroTable th,
+  #registroTable td {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  #registroTable {
+    min-width: 600px;
+    font-size: 0.9rem;
+  }
+
+  #registroTable th,
+  #registroTable td {
+    padding: 10px 12px;
+  }
+}
+
+
+
+/* =========================
+   AZIONI / PULSANTI
+========================= */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.actions button {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #2563eb;
+  color: #ffffff;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.actions button:not(:disabled):hover {
+  background-color: #1e40af;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  #registroTable th,
+  #registroTable td {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}
+
+/* =========================
+  Stile pagina responsabile didattica gestione docenti
+========================= */
+
+/* Container principale */
+.page-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+
+
+/* Filtro e ricerca */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input,
+.year-filter {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width:500px;
+}
+
+/* Wrapper scrollabile */
+.table-wrapper {
+  width: 100%;       /* si adatta al container */
+  overflow-x: auto;  /* scroll orizzontale se necessario */
+}
+
+/* Tabella docenti */
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+    table-layout: auto;
+  white-space: nowrap;   /* evita che le celle vadano a capo */
+}
+
+.teacher-table th,
+.teacher-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.teacher-table th {
+  background-color: #105605; ;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Status docenti */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  min-width: 60px;
+}
+
+.status.active {
+  background-color: #28a745; /* verde chiaro per attivo */
+}
+
+.status.inactive {
+  background-color: #dc3545; /* rosso per inattivo */
+}
+
+/* Bottoni */
+.btn-view,
+.btn-edit {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-view {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-view:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+  transform: scale(1.05);
+}
+
+.info-message {
+  color: #555;
+  font-style: italic;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Bottone Modifica */
+.action-btn.edit {
+  background-color: #105605; /* verde responsabile didattica */
+  color: #fff;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover / feedback utente */
+.action-btn.edit:hover {
+  background-color: #0c4304; /* verde più scuro */
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* =========================
+   MODAL OVERLAY (sfondo)
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* =========================
+   MODAL CONTAINER
+========================= */
+.limits-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  max-width: 95%;
+  background: #fff;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+}
+
+/* =========================
+   NASCOSTO
+========================= */
+.hidden {
+  display: none;
+}
+
+/* =========================
+   MODAL HEADER
+========================= */
+.modal-header {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Titolo centrato */
+.modal-header h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Bottone chiudi */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+/*
+/* =========================
+   Overlay
+========================= */
+.limits-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* =========================
+   Modal container
+========================= */
+.limits-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  max-width: 95%;
+  background: #fff;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+}
+
+/* Nascondi */
+.hidden {
+  display: none;
+}
+
+/* =========================
+   Header
+========================= */
+.limits-modal-header {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.limits-modal-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+
+  /* posizione centrata assoluta */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  pointer-events: none;
+}
+
+.limits-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #555;
+  z-index: 1;
+}
+
+.limits-close-btn:hover {
+  color: #000;
+}
+
+/* =========================
+   Body
+========================= */
+.limits-modal-body {
+  padding: 16px;
+  text-align: left;
+}
+
+/* =========================
+   Form
+========================= */
+.limits-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.limits-form-group label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: 500;
+}
+
+.limits-form-group input,
+.limits-form-group select {
+  padding: 7px 8px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.limits-form-group input:focus,
+.limits-form-group select:focus {
+  outline: none;
+  border-color: #105605;
+}
+
+/* =========================
+   Azioni
+========================= */
+.limits-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Bottoni */
+.limits-action-btn {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.limits-save-btn {
+  background-color: #105605;
+  color: #fff;
+}
+
+.limits-save-btn:hover {
+  background-color: #0c4704;
+}
+
+.limits-cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.limits-cancel-btn:hover {
+  background-color: #b5b5b5;
+}
+
+/* Distacco dall'header */
+.page-section {
+  margin-top: 32px;
+}
+
+/* Box import */
+.assignments-import-box {
+  width: 100%;
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Titolo */
+.assignments-import-title {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Descrizione */
+.assignments-import-description {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Form layout */
+.assignments-import-form {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Input file */
+.assignments-file-input {
+  font-size: 0.9rem;
+}
+
+/* Bottone */
+.assignments-import-btn {
+  padding: 8px 18px;
+  background-color: #444;
+  color: #fff;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.assignments-import-btn:hover {
+  background-color: #222;
+}
+
+/* Pagina gestione utenti amministratore di sistema*/
+
+/* Tabella utenti */
+#adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#adminTable th,
+#adminTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+#adminTable th {
+  background-color: #7d0808; 
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Status utenti */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  min-width: 60px;
+}
+
+.status.active {
+  background-color: #28a745; /* verde chiaro per attivo */
+}
+
+.status.inactive {
+  background-color: #dc3545; /* rosso per inattivo */
+}
+
+/* Pulsanti azioni */
+#adminTable button {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 6px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#adminTable button:hover {
+   background-color: #e6e6e6;
+  border-color: #999;
+}
+
+
+.users-section {
+  margin-top: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.08);
+}
+
+
+.permissions-section {
+  margin-top: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.08);
+}
+
+.section-headerAdmin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section-headerAdmin h2 {
+  color: #7d0808;
+  font-size: 20px;
+}
+
+.section-headerAdmin button {
+  background-color: #7d0808;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.permissions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.permissions-table th,
+.permissions-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.permissions-table th {
+  background-color: #7d0808;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Bottoni admin grigi */
+.admin-btn {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 6px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-btn:hover {
+  background-color: #e6e6e6;
+  border-color: #999;
+}
+
+
+/* Variante per Elimina */
+.admin-btn.delete {
+  /* grigio leggermente più scuro */
+  background-color: #e8e8e8;
+}
+
+/* ================= Tabella Ruoli (stile identico a permessi) ================= */
+
+.roles-section{
+   margin-top: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.08);
+}
+.roles-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.roles-table th,
+.roles-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.roles-table th {
+  background-color: #7d0808;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Bottoni admin */
+.admin-btn {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 6px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-btn:hover {
+  background-color: #e6e6e6;
+  border-color: #999;
+}
+
+
+.admin-btn.delete { background-color: #e8e8e8; }
+
+
+
+/* ================================
+   ADMIN MODAL
+================================ */
+
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.admin-hidden {
+  display: none;
+}
+
+.admin-modal-box {
+  background: #fff;
+  width: 420px;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.admin-modal-title {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+/* form */
+
+.admin-modal-form-group {
+  margin-bottom: 14px;
+}
+
+.admin-modal-form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.admin-modal-input,
+.admin-modal-textarea {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.admin-modal-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* actions */
+
+.admin-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}

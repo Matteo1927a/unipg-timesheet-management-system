@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report progetti</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="js/header.js"></script>
+  <script src="js/report_progetti.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+     <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Report progetti</div>
+
+     
+      
+        <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+
+    <div class="header-menu responsabile_amministrativo">
+      <ul id="main-menu">
+        <li><a href="lista_progetti.html">Progetti</a></li>
+         <li><a href="aggiunta_progetti.html">Aggiungi progetto</a></li>
+        <li><a href="report_progetti.html">Report</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+
+<main class="container report-page">
+
+  <h1 class="page-title">Report progetti</h1>
+
+  <!-- ================= FILTRI ================= -->
+  <section class="report-filters">
+
+    <h2>Filtra report progetto</h2>
+
+    <form id="reportFiltersForm">
+
+      <!-- Progetto -->
+      <div class="form-group">
+        <label for="project">Progetto</label>
+        <select id="project" name="project_id" required>
+          <option value="">Seleziona progetto</option>
+          <!-- popolati dinamicamente -->
+        </select>
+      </div>
+
+      <!-- Utente -->
+      <div class="form-group">
+        <label for="user">Utente</label>
+        <select id="user" name="user_id" disabled required>
+          <option value="">Seleziona utente</option>
+          <!-- popolati dinamicamente in base al progetto -->
+        </select>
+      </div>
+
+      <!-- Anno -->
+      <div class="form-group">
+        <label for="year">Anno</label>
+        <select id="year" name="year" required>
+          <option value="">Seleziona anno</option>
+          <!-- popolati dinamicamente -->
+        </select>
+      </div>
+
+      <!-- Mese -->
+      <div class="form-group">
+        <label for="month">Mese</label>
+        <select id="month" name="month" required>
+          <option value="">Seleziona mese</option>
+          <option value="1">Gennaio</option>
+          <option value="2">Febbraio</option>
+          <option value="3">Marzo</option>
+          <option value="4">Aprile</option>
+          <option value="5">Maggio</option>
+          <option value="6">Giugno</option>
+          <option value="7">Luglio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Settembre</option>
+          <option value="10">Ottobre</option>
+          <option value="11">Novembre</option>
+          <option value="12">Dicembre</option>
+        </select>
+      </div>
+
+      <!-- Azioni -->
+      <div class="form-actions">
+        <button type="button" id="generateProjectReportBtn">
+          Genera report
+        </button>
+      </div>
+
+    </form>
+  </section>
+
+</main>
+
+
+     <footer class="simple-footer">
+    <!-- Colonna sinistra -->
+    <div class="footer-col left">
+      <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+      <span class="riga2">Dipartimento di Matematica e Informatica</span>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="footer-col center">
+      <span class="riga1">Timesheet</span>
+      <span class="riga2">Versione 1.0</span>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="footer-col right">
+      <span class="riga1">Stai riscontrando problemi?</span>
+      <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+    </div>
+  </footer>
+
+</body>

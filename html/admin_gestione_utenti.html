@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione Utenti</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/gestione_utenti.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Gestione Utenti </div>
+
+
+
+          <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+
+      <div class="header-menu amministratore">
+      <ul id="main-menu">
+        <li><a href="admin_gestione_utenti.html">Gestione Utenti</a></li>
+        <li><a href="admin_ruoli.html">Ruoli</a></li>
+       <li><a href="admin_permessi.html">Permessi</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+
+  
+<section class="users-section">
+
+    <div class="section-headerAdmin">
+   <h1 class="page-title">Lista utenti</h1>
+    <!--<button id="addUser">+ Nuovo utente</button>-->
+  </div>
+<div class="table-wrapper">
+    <!-- Filtro / ricerca -->
+  <div class="filter-container">
+    <input type="text" id="search-input" placeholder="Cerca docente per nome, cognome o codice fiscale..." class="search-input">
+  </div>
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Email</th>
+        <th>Codice Docente</th>
+        <th>Codice Fiscale</th>
+        <th>Ruolo</th>
+        <th>Stato</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Qui verranno inseriti dinamicamente gli utenti -->
+    </tbody>
+  </table>
+ </div>
+</section>
+
+<!-- MODAL MODIFICA RUOLI UTENTE -->
+<div id="user-roles-modal" class="admin-modal admin-hidden">
+  <div class="admin-modal-box">
+
+    <h3 class="admin-modal-title">Modifica ruoli utente</h3>
+
+    <div class="admin-modal-form-group">
+      <label>Ruoli disponibili</label>
+      <div id="user-roles-list"></div>
+    </div>
+
+    <div class="admin-modal-actions">
+      <button id="save-user-roles-btn" class="admin-btn">Salva</button>
+      <button id="close-user-roles-btn" class="admin-btn">Annulla</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+    <footer class="simple-footer">
+    <!-- Colonna sinistra -->
+    <div class="footer-col left">
+      <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+      <span class="riga2">Dipartimento di Matematica e Informatica</span>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="footer-col center">
+      <span class="riga1">Timesheet</span>
+      <span class="riga2">Versione 1.0</span>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="footer-col right">
+      <span class="riga1">Stai riscontrando problemi?</span>
+      <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+    </div>
+  </footer>
+
+
+</body>

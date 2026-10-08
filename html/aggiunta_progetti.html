@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aggiunta progetti</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="js/aggiungi_progetto.js"></script>
+  <script src="js/header.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body class="resp_amm-body"></body>
+ <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Aggiungi Progetto </div>
+
+     <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+
+     <div class="header-menu responsabile_amministrativo">
+      <ul id="main-menu">
+        <li><a href="lista_progetti.html">Progetti </a></li>
+        <li><a href="aggiunta_progetti.html">Aggiungi progetto</a></li>
+        <li><a href="report_progetti.html">Report</a></li>
+      </ul>
+  </header>
+
+
+<!-- sezione aggiunta progetto -->
+<div class="resp_amm-container">
+  <h1 class="resp_amm-page-title">Aggiungi un nuovo progetto</h1>
+
+  <form id="resp_amm-project-form" class="resp_amm-form-section">
+    <h2 class="resp_amm-section-title">Dati Progetto</h2>
+     <a class="resp_amm-required-note">Campi obbligatori <span style="color:red">*</span></a>
+
+    <div class="resp_amm-form-grid">
+      <label for="project-title">Titolo del progetto</label>
+      <input
+        type="text"
+        id="project-title"
+        placeholder="Es: Advanced and Quantum-safe Solutions for Digital Identity and digital Tracing"
+      />
+
+      <label for="project-acronym">Acronimo <span style="color:red">*</span></label>
+      <input
+        type="text"
+        id="project-acronym"
+        required
+        placeholder="Es: AQuSDIT"
+      />
+
+   
+
+      <label for="project-cup">CUP <span style="color:red">*</span></label>
+      <input
+        type="text"
+        id="project-cup"
+        required
+        placeholder="Es: H73C22000880001"
+      />
+
+      <label for="project-code">Codice Progetto</label>
+      <input type="text" id="project-code" placeholder="Es: PE00000014" />
+
+      <label for="project-organization">Denominazione Ente</label>
+      <input
+        type="text"
+        id="project-organization"
+        placeholder="Es: Università degli Studi di Perugia"
+      />
+
+      <label for="project-funder">Ente finanziatore</label>
+      <input
+        list="funder-list"
+        id="project-funder"
+        placeholder="Seleziona o inserisci un nuovo ente"
+      />
+      <datalist id="funder-list">
+        <option value="Unione Europea"></option>
+        <option value="MIUR"></option>
+      </datalist>
+
+      <label for="project-tot_hour">Totale ore progetto</label>
+      <input
+        type="number"
+        id="project-tot_hour"
+        placeholder="Es: 2500"
+        min="0"
+      />
+
+      <label for="project-start">Data Inizio <span style="color:red">*</span></label>
+      <input type="date" id="project-start" required />
+
+      <label for="project-end">Data Fine <span style="color:red">*</span></label>
+      <input type="date" id="project-end" required />
+    </div>
+
+
+
+<h2 class="resp_amm-section-title">Banner Timesheet</h2>
+
+<div class="resp_amm-form-grid">
+  <label for="project-banner">Carica banner progetto</label>
+  <input
+    type="file"
+    id="project-banner"
+     accept="image/png, image/jpeg, image/jpg, image/webp"
+  />
+  <small style="color: #678;">
+  Carica un’immagine che verrà mostrata in alto nei timesheet del progetto.
+  </small>
+
+</div>
+
+
+
+      <!-- Sezione Work Packages -->
+      <h2 class="resp_amm-section-title"> Work Packages (WP)</h2>
+
+      <div id="resp_amm-wp-container"></div>
+
+      <button type="button" id="resp_amm-add-wp-btn" class="resp_amm-btn-secondary">+ Aggiungi WP</button>
+
+      <div class="resp_amm-form-actions">
+        <button type="submit" class="resp_amm-btn-primary">Salva Progetto</button>
+    
+      </div>
+      
+  </form>
+
+ 
+</div>
+
+  <footer class="simple-footer">
+  <!-- Colonna sinistra -->
+  <div class="footer-col left">
+    <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+    <span class="riga2">Dipartimento di Matematica e Informatica</span>
+  </div>
+
+  <!-- Colonna centrale -->
+  <div class="footer-col center">
+    <span class="riga1">Timesheet</span>
+    <span class="riga2">Versione 1.0</span>
+  </div>
+
+  <!-- Colonna destra -->
+  <div class="footer-col right">
+    <span class="riga1">Stai riscontrando problemi?</span>
+    <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+  </div>
+</footer>
+
+  </body>

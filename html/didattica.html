@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Didattica</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/gestione_docenti.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Gestione Docenti</div>
+
+
+
+          <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+ 
+    <div class="header-menu responsabile_didattica">
+      <ul id="main-menu">
+        <li><a href="didattica.html">Docenti</a></li>
+        <li><a href="insegnamenti.html">Insegnamenti</a></li>
+        <li><a href="docenti_insegnamenti.html">Assegnazioni</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <div class="page-container">
+  <h1 class="page-title">Docenti</h1>
+  <div class="table-wrapper">
+  <!-- Filtro / ricerca -->
+  <div class="filter-container">
+    <input type="text" id="search-input" placeholder="Cerca docente per nome, cognome o codice..." class="search-input">
+  </div>
+
+  <!-- Tabella docenti -->
+ 
+  <table class="teacher-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Email</th>
+        <th>Codice docente</th>
+         <th>Codice fiscale</th>
+        <th>Stato</th>
+        <th>Limiti annuali</th>
+      </tr>
+    </thead>
+    <tbody id="teacher-table-body">
+      <!-- Righe generate dinamicamente da JS -->
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+
+
+<!-- Overlay -->
+<div id="limits-modal-overlay" class="limits-modal-overlay hidden"></div>
+
+<!-- Popup modifica limiti -->
+<div id="limits-modal" class="limits-modal hidden">
+  <div class="limits-modal-header">
+    <h3 class="limits-modal-title">Configura limiti annuali</h3>
+    <button id="limits-close-btn" class="limits-close-btn">&times;</button>
+  </div>
+
+  <div class="limits-modal-body">
+    <form id="limits-form">
+
+      <div class="limits-form-group">
+        <label>Docente</label>
+        <input type="text" id="modal-docente-name" disabled>
+      </div>
+
+      <div class="limits-form-group">
+        <label for="modal-academic-year">Anno accademico</label>
+        <select id="modal-academic-year" required>
+          <!-- anni caricati via JS -->
+        </select>
+      </div>
+
+   <div class="limits-form-group">
+  <label for="modal-max-teaching-hours">Ore didattica massime</label>
+  <input 
+    type="number" 
+    id="modal-max-teaching-hours" 
+    min="0" 
+    step="1" 
+    placeholder="Inserisci ore"
+  >
+</div>
+
+      <div class="limits-form-group">
+  <label for="modal-max-total-hours">Ore totali massime</label>
+  <input 
+    type="number" 
+    id="modal-max-total-hours" 
+    min="0" 
+    step="1" 
+    placeholder="Inserisci ore"
+  >
+</div>
+
+      <div class="limits-modal-actions">
+        <button type="submit" class="limits-action-btn limits-save-btn">Salva</button>
+        <button type="button" id="limits-cancel-btn" class="limits-action-btn limits-cancel-btn">Annulla</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+  <footer class="simple-footer">
+    <!-- Colonna sinistra -->
+    <div class="footer-col left">
+      <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+      <span class="riga2">Dipartimento di Matematica e Informatica</span>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="footer-col center">
+      <span class="riga1">Timesheet</span>
+      <span class="riga2">Versione 1.0</span>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="footer-col right">
+      <span class="riga1">Stai riscontrando problemi?</span>
+      <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+    </div>
+  </footer>
+
+</body>

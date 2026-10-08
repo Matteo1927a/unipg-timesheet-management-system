@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Didattica</title>
+  <link rel="stylesheet" href="stile/stile.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/docenti_insegnamenti.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- HEADER  -->
+  <header class="dashboard-header">
+    <!-- Striscia bianca -->
+    <div class="header-top">
+      <span class="material-icons">calendar_month</span>
+      <div class="header-title">Timesheet - Assegnazione Insegnamenti</div>
+
+
+
+         <div class="header-profile">
+  <span class="material-icons user-icon">account_circle</span>
+
+  <span class="user-text">
+    <span id="welcomeUser">Benvenuto/a, ...</span> -
+    <span id="userRole"></span> -
+    <a href="#" id="logoutBtn">Esci</a>
+  </span>
+
+  <span class="material-icons" id="logoutIcon">exit_to_app</span>
+</div>
+    </div>
+
+
+    <div class="header-menu responsabile_didattica">
+      <ul id="main-menu">
+        <li><a href="didattica.html">Docenti</a></li>
+        <li><a href="insegnamenti.html">Insegnamenti</a></li>
+        <li><a href="docenti_insegnamenti.html">Assegnazioni</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="page-section">
+
+  <div class="assignments-import-box">
+
+    <h3 class="assignments-import-title">
+      Import assegnazioni da file Excel
+    </h3>
+
+    <p class="assignments-import-description">
+      Seleziona un file Excel contenente le assegnazioni
+      docenti–insegnamenti da importare nel sistema.
+    </p>
+
+    <form id="import-assignments-form" class="assignments-import-form">
+
+      <input
+        type="file"
+        id="excel-file"
+        accept=".xlsx,.xls"
+        class="assignments-file-input"
+      >
+
+
+
+<button type="button" id="preview-btn">Preview</button>
+<button type="submit" class="assignments-import-btn">Importa</button>
+
+<pre id="preview-output"></pre>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+    <footer class="simple-footer">
+    <!-- Colonna sinistra -->
+    <div class="footer-col left">
+      <span class="riga1">© 2025 Università degli Studi di Perugia</span>
+      <span class="riga2">Dipartimento di Matematica e Informatica</span>
+    </div>
+
+    <!-- Colonna centrale -->
+    <div class="footer-col center">
+      <span class="riga1">Timesheet</span>
+      <span class="riga2">Versione 1.0</span>
+    </div>
+
+    <!-- Colonna destra -->
+    <div class="footer-col right">
+      <span class="riga1">Stai riscontrando problemi?</span>
+      <span class="riga2">Contatta: timesheet.dmi@unipg.it</span>
+    </div>
+  </footer>
+
+</body>
