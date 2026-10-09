@@ -47,13 +47,13 @@ Make sure the environment variables and database configuration are set correctly
 
 ### Teacher's timesheet
 [Main Dashboard](screenshots/timesheet.png)
-[Teaching pop-up](screenshots/pop-uplezioni.png)
+[Teaching pop-up](screenshots/pop-up_lezioni.png)
 
 ### Projects
 [Projects list](screenshots/lista_progetti.png)
 [Project overview](screenshots/overview_responsabile_progetti.png)
 [Project details](screenshots/gestione_dettagli_progetto.png)
-[Add new project](screenshots/form_insermento_nuovo_progetto.png)
+[Add new project](screenshots/form_insermento_progetto.png)
 
 ### Teaching
 [Teaching assignments](screenshots/assegnazione_insegnamenti.png)
