@@ -43,6 +43,22 @@ The application is designed to run using Docker Compose.
 
 Make sure the environment variables and database configuration are set correctly before starting the application.
 
+## Screenshots
+
+### Teacher's timesheet
+![Main Dashboard](screenshots/timesheet.png)
+![Teaching pop-up](screenshots/Pop-uplezioni.png)
+
+### Projects
+![Projects list](screenshots/Listaprogetti_3.png)
+![Project overview](screenshots/Oveview_responsabile_progetti.png)
+![Project details](screenshots/Gestionedettagliprogetto.png)
+![Add new project](screenshots/Forminsermentonuovoprogetto.png)
+
+### Teaching
+![Teaching assignments](screenshots/Assegnazioneinsegnamenti.png)
+
+
 ## Academic Context
 
 Bachelor's thesis project – Computer Science, University of Perugia (Università degli Studi di Perugia).
