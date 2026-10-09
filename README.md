@@ -47,16 +47,16 @@ Make sure the environment variables and database configuration are set correctly
 
 ### Teacher's timesheet
 ![Main Dashboard](screenshots/timesheet.png)
-![Teaching pop-up](screenshots/Pop-uplezioni.png)
+![Teaching pop-up](screenshots/pop-uplezioni.png)
 
 ### Projects
-![Projects list](screenshots/Listaprogetti_3.png)
-![Project overview](screenshots/Oveview_responsabile_progetti.png)
-![Project details](screenshots/Gestionedettagliprogetto.png)
-![Add new project](screenshots/Forminsermentonuovoprogetto.png)
+![Projects list](screenshots/lista_progetti.png)
+![Project overview](screenshots/overview_responsabile_progetti.png)
+![Project details](screenshots/gestione_dettagli_progetto.png)
+![Add new project](screenshots/form_insermento_nuovo_progetto.png)
 
 ### Teaching
-![Teaching assignments](screenshots/Assegnazioneinsegnamenti.png)
+![Teaching assignments](screenshots/assegnazione_insegnamenti.png)
 
 
 ## Academic Context
