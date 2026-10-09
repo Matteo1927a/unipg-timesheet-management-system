@@ -50,7 +50,7 @@ Make sure the environment variables and database configuration are set correctly
 [Teaching pop-up](screenshots/pop-up_lezioni.png)
 
 ### Projects
-[Projects list](screenshots/lista_progetti.png)
+[Projects list](screenshots/progetti.png)
 [Project overview](screenshots/overview_responsabile_progetti.png)
 [Project details](screenshots/gestione_dettagli_progetto.png)
 [Add new project](screenshots/form_insermento_progetto.png)
